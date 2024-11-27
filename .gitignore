@@ -1,0 +1,34 @@
+# Entornos virtuales
+venv/
+.env/
+
+# Compilación de Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Archivos de configuración
+*.env
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+
+# Archivos y carpetas específicas de IDEs
+.vscode/
+.idea/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos estáticos y de caché de Django
+staticfiles/
+media/
+
+# Archivos de migraciones de Django (opcional si no quieres incluirlos en el control de versiones)
+**/migrations/*.pyc
+**/migrations/*.py
+!**/migrations/__init__.py
