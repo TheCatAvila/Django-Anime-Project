@@ -23,4 +23,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('signup/', views.signup, name="signup"),
     path('login/', views.login, name="login"),
+    path('search/', views.anime_search, name='anime_search'),
+    #path('anime-details/', views.anime_details, name='anime-details'),
 ]

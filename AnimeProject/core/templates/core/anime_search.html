@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block tittle %}Anime | Search{% endblock %}
+
+{% block content %}
+
+ <!-- Normal Breadcrumb Begin -->
+ <section class="normal-breadcrumb set-bg" data-setbg="{% static 'core/img/normal-breadcrumb.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>Anime search</h2>
+                    <p>Results of your anime search.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Normal Breadcrumb End -->
+
+<!-- Blog Section Begin -->
+<section class="blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    {% if anime_results %}
+                    {% for anime in anime_results %}
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="blog__item small__item set-bg" data-setbg="{{ anime.images.jpg.image_url }}">
+                            <div class="blog__item__text">
+                                <p><span class="icon_calendar"></span> {{ anime.aired.from }}</p>
+                                <h4><a href="#">{{ anime.title }}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% elif query %}
+                    <p>No se encontraron resultados para "{{ query }}".</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+ {% endblock %}
