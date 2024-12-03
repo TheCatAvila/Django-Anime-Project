@@ -24,5 +24,6 @@ urlpatterns = [
     path('signup/', views.signup, name="signup"),
     path('login/', views.login, name="login"),
     path('search/', views.anime_search, name='anime_search'),
-    #path('anime-details/', views.anime_details, name='anime-details'),
+    path('anime-details/<int:anime_id>-<str:anime_name>', views.anime_details, name='anime_details'),
+    path('anime-trailer/<int:anime_id>', views.anime_trailer, name='anime_trailer'),
 ]

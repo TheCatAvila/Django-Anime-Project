@@ -29,10 +29,10 @@
                     {% if anime_results %}
                     {% for anime in anime_results %}
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="blog__item small__item set-bg" data-setbg="{{ anime.images.jpg.image_url }}">
-                            <div class="blog__item__text">
+                        <div class="blog__item small__item set-bg" data-setbg="{{ anime.banner_url }}">
+                            <div class="blog__item__text" style="background-color: rgba(0, 0, 0, 0.5); padding-left: 10px;">
                                 <p><span class="icon_calendar"></span> {{ anime.aired.from }}</p>
-                                <h4><a href="#">{{ anime.title }}</a></h4>
+                                <h4><a href="{% url 'anime_details' anime_id=anime.id anime_name=anime.title|slugify %}">{{ anime.title }}</a></h4>
                             </div>
                         </div>
                     </div>
