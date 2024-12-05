@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
+from .forms import RegisterForm
+from django.contrib.auth.hashers import make_password
 
 # Función para obtener los detalles del anime desde la API
 def get_anime_data(anime_id):
@@ -48,7 +50,7 @@ def index(request):
     if response_popularity.status_code == 200:
         data = response_popularity.json()
         anime_list = data.get('data', [])
-        for anime in anime_list[:9]:
+        for anime in anime_list[:6]:
             youtube_id = anime.get('trailer', {}).get('youtube_id', '')
             banner_url = f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg" if youtube_id else ""
             popularity_anime.append({
@@ -106,7 +108,18 @@ def anime_search(request):
     return render(request, 'core/anime_search.html', {'anime_results': anime_results, 'query': query})
 
 def signup(request):
-    return render(request, 'core/auth/signup.html')
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            # Guardar el usuario con la contraseña hasheada
+            user = form.save(commit=False)
+            user.passhash = make_password(form.cleaned_data['passhash'])
+            user.save()
+            return redirect('login')  # Redirigir tras el registro exitoso
+    else:
+        form = RegisterForm()
+
+    return render(request, 'core/auth/signup.html', {'form': form})
 
 def login(request):
     return render(request, 'core/auth/login.html')

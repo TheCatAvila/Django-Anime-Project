@@ -25,21 +25,23 @@
             <div class="col-lg-6">
                 <div class="login__form">
                     <h3>Sign Up</h3>
-                    <form action="#">
+                    <form action="{% url 'signup' %}" method="POST">
+                        {% csrf_token %}
                         <div class="input__item">
-                            <input type="text" placeholder="Email address">
+                            {{ form.email }}
                             <span class="icon_mail"></span>
                         </div>
                         <div class="input__item">
-                            <input type="text" placeholder="Your Name">
+                            {{ form.username }}
                             <span class="icon_profile"></span>
                         </div>
                         <div class="input__item">
-                            <input type="text" placeholder="Password">
+                            {{ form.passhash }}
                             <span class="icon_lock"></span>
                         </div>
-                        <button type="submit" class="site-btn">Login Now</button>
+                        <button type="submit" class="site-btn">Register Now</button>
                     </form>
+                                   
                     <h5>Already have an account? <a href="{% url 'login' %}">Log In!</a></h5>
                 </div>
             </div>
